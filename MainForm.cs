@@ -162,6 +162,11 @@ namespace Eblomon
 
         private void enter_Click(object sender, EventArgs e)
         {
+            var cookieContainer = new CookieContainer();
+            var handler = new HttpClientHandler();
+            handler.CookieContainer = cookieContainer;
+            var client = new HttpClient(handler);
+
             LoginViewModel model = new LoginViewModel
             {
                 //Login = loginBox.Text,
@@ -171,19 +176,15 @@ namespace Eblomon
             };
 
             string json = JsonConvert.SerializeObject(model);
-            Uri uri = new Uri("http://localhost:64282/account/login");
 
-            HttpClient request = new HttpClient();
-            StringContent content = new StringContent(json);
-
-            //content.Headers.Add("Content-Type", "application/json");
-
-            var response = request.PostAsync(uri, content);
-            response.GetAwaiter().GetResult();
 
             
+            client.DefaultRequestHeaders.Add("content-type", "application/json");
+            var response = client.PostAsync(new Uri("http://localhost:64282/account/login"), new StringContent(json, Encoding.UTF8))
+                                 .GetAwaiter()
+                                 .GetResult();
 
-          
+                  
            bool stub = false;
             
         }
