@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -152,6 +153,39 @@ namespace Eblomon
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void enter_Click(object sender, EventArgs e)
+        {
+            LoginViewModel model = new LoginViewModel
+            {
+                //Login = loginBox.Text,
+                //Password = passwordBox.Text
+                Login = "pervov",
+                Password = "gfgasdfg9875asdfasdgas978"
+            };
+
+            string json = JsonConvert.SerializeObject(model);
+            Uri uri = new Uri("http://localhost:64282/account/login");
+
+            HttpClient request = new HttpClient();
+            StringContent content = new StringContent(json);
+
+            //content.Headers.Add("Content-Type", "application/json");
+
+            var response = request.PostAsync(uri, content);
+            response.GetAwaiter().GetResult();
+
+            
+
+          
+           bool stub = false;
+            
         }
     }
 }

@@ -33,10 +33,10 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.tmrCheck = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.enter = new System.Windows.Forms.Button();
+            this.passwordBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.loginBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +53,7 @@
             this.lblTime.TabIndex = 2;
             this.lblTime.Text = "00:00:00";
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTime.Visible = false;
             // 
             // tmrCheck
             // 
@@ -62,38 +63,41 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.enter);
+            this.panel1.Controls.Add(this.passwordBox);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.loginBox);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(-4, 0);
+            this.panel1.Location = new System.Drawing.Point(1, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(455, 126);
+            this.panel1.Size = new System.Drawing.Size(444, 126);
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // button1
+            // enter
             // 
-            this.button1.BackColor = System.Drawing.Color.PaleGreen;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.ForeColor = System.Drawing.Color.Green;
-            this.button1.Location = new System.Drawing.Point(120, 91);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(205, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Войти в Eblomon";
-            this.button1.UseVisualStyleBackColor = false;
+            this.enter.BackColor = System.Drawing.SystemColors.Info;
+            this.enter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.enter.ForeColor = System.Drawing.Color.Green;
+            this.enter.Location = new System.Drawing.Point(120, 91);
+            this.enter.Name = "enter";
+            this.enter.Size = new System.Drawing.Size(205, 32);
+            this.enter.TabIndex = 4;
+            this.enter.Text = "Войти в Eblomon";
+            this.enter.UseVisualStyleBackColor = false;
+            this.enter.Click += new System.EventHandler(this.enter_Click);
             // 
-            // textBox2
+            // passwordBox
             // 
-            this.textBox2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.textBox2.Location = new System.Drawing.Point(120, 64);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(205, 20);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "Введите пароль";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.passwordBox.BackColor = System.Drawing.SystemColors.Info;
+            this.passwordBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.passwordBox.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.passwordBox.Location = new System.Drawing.Point(120, 64);
+            this.passwordBox.Name = "passwordBox";
+            this.passwordBox.Size = new System.Drawing.Size(205, 20);
+            this.passwordBox.TabIndex = 3;
+            this.passwordBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.passwordBox.UseSystemPasswordChar = true;
             // 
             // label2
             // 
@@ -106,15 +110,17 @@
             this.label2.Text = "Password";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox1
+            // loginBox
             // 
-            this.textBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.textBox1.Location = new System.Drawing.Point(120, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(205, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Введите логин";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.loginBox.BackColor = System.Drawing.SystemColors.Info;
+            this.loginBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.loginBox.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.loginBox.Location = new System.Drawing.Point(120, 25);
+            this.loginBox.Name = "loginBox";
+            this.loginBox.Size = new System.Drawing.Size(205, 20);
+            this.loginBox.TabIndex = 1;
+            this.loginBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.loginBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -154,10 +160,10 @@
         private System.Windows.Forms.Timer tmrCheck;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox loginBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox passwordBox;
+        private System.Windows.Forms.Button enter;
     }
 }
 
