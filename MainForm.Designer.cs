@@ -32,13 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.lblTime = new System.Windows.Forms.Label();
             this.tmrCheck = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.loginPanel = new System.Windows.Forms.Panel();
             this.enter = new System.Windows.Forms.Button();
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.loginBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
+            this.loginPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTime
@@ -61,18 +61,18 @@
             this.tmrCheck.Interval = 60000;
             this.tmrCheck.Tick += new System.EventHandler(this.tmrCheck_Tick);
             // 
-            // panel1
+            // loginPanel
             // 
-            this.panel1.Controls.Add(this.enter);
-            this.panel1.Controls.Add(this.passwordBox);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.loginBox);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(1, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(444, 126);
-            this.panel1.TabIndex = 3;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.loginPanel.Controls.Add(this.enter);
+            this.loginPanel.Controls.Add(this.passwordBox);
+            this.loginPanel.Controls.Add(this.label2);
+            this.loginPanel.Controls.Add(this.loginBox);
+            this.loginPanel.Controls.Add(this.label1);
+            this.loginPanel.Location = new System.Drawing.Point(1, 0);
+            this.loginPanel.Name = "loginPanel";
+            this.loginPanel.Size = new System.Drawing.Size(444, 126);
+            this.loginPanel.TabIndex = 3;
+            this.loginPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // enter
             // 
@@ -138,7 +138,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(445, 126);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.loginPanel);
             this.Controls.Add(this.lblTime);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -149,8 +149,8 @@
             this.Text = "Eblomon";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.loginPanel.ResumeLayout(false);
+            this.loginPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -158,7 +158,7 @@
         #endregion
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Timer tmrCheck;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel loginPanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox loginBox;
         private System.Windows.Forms.Label label2;
