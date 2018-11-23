@@ -32,6 +32,56 @@ namespace Eblomon
         {
            
         }
+        private void enter_Click(object sender, EventArgs e)
+        {
+            var cookieContainer = new CookieContainer();
+            HttpClientHandler handler = new HttpClientHandler { CookieContainer = cookieContainer };
+            HttpClient client = new HttpClient(handler);
+
+            Dictionary<string, string> keys = new Dictionary<string, string>
+            {
+                { "login", loginBox.Text },
+                { "pass", passwordBox.Text }
+            };
+
+            FormUrlEncodedContent post_content = new FormUrlEncodedContent(keys);
+            //var post_response = client.PostAsync("http://localhost:64282/mobile/login", post_content).GetAwaiter().GetResult();
+            using (var post_response = client.PostAsync("https://wplan.io/mobile/login", post_content).GetAwaiter().GetResult())
+            {
+                if (post_response.StatusCode == HttpStatusCode.OK)
+                {
+                    try
+                    {
+                        var json = post_response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                        var data = JsonConvert.DeserializeObject<AccountResponse>(json);
+
+                        if (data.success)
+                        {
+                            _cookies = post_response.Headers.GetValues("Set-Cookie").ToArray();
+                            lblTime.Visible = true;
+                            loginPanel.Visible = false;
+
+                            tmrCheck_Tick(null, null);
+                            tmrCheck.Start();
+                        }
+                        else
+                        {
+                            loginPanel.Visible = false;
+                            MessageBox.Show("Eblomon не понимать шагельды магельды..", "Ащибся паслющай!");
+                            loginPanel.Visible = true;
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        throw new HttpRequestException(exc.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Зарубежны буква писать нада", "Вах-вах-вах");
+                }
+            }
+        }
         private void tmrCheck_Tick(object sender, EventArgs e)
         {
             try
@@ -164,39 +214,6 @@ namespace Eblomon
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void enter_Click(object sender, EventArgs e)
-        {
-            var cookieContainer = new CookieContainer(); 
-            HttpClientHandler handler = new HttpClientHandler { CookieContainer = cookieContainer };
-            HttpClient client = new HttpClient(handler);
-                       
-            Dictionary<string, string> keys = new Dictionary<string, string>
-            {
-                //{ "login", "pervov" },
-                //{ "pass", "gfgasdfg9875asdfasdgas978" }
-                { "login", loginBox.Text },
-                { "pass", passwordBox.Text }
-            };
-
-            FormUrlEncodedContent post_content = new FormUrlEncodedContent(keys);
-            var post_response = client.PostAsync("https://wplan.io/mobile/login", post_content).GetAwaiter().GetResult();
-            //var post_response = client.PostAsync("http://localhost:64282/mobile/login", post_content).GetAwaiter().GetResult();
-
-            if(post_response.StatusCode == HttpStatusCode.OK)
-            {
-                _cookies = post_response.Headers.GetValues("Set-Cookie").ToArray();
-                lblTime.Visible = true;
-                loginPanel.Visible = false;
-
-                tmrCheck_Tick(null, null);
-                tmrCheck.Start();
-            }
-            else
-            {
-               
-            }
         }
     }
 }
